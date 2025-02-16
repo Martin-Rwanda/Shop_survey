@@ -49,10 +49,17 @@ def registration(request):
         )
 
         user.save()
-        
         messages.add_message(request, messages.SUCCESS, 'Account Successfully Created you may login!')
         return redirect('login')
-    return render(request, 'authentications/register.html')
+    return render(request, 'authentications/register-page.html')
+
+#Dashboard view
+@login_required
+def dashboard_views(request):
+    user = request.user
+    return render(request, 'partials/index.html', {
+        'user': user
+    })
 
 #login user 
 @auth_user_should_not_access
@@ -65,14 +72,15 @@ def login_user(request):
 
         if user is not None:
             login(request, user)
-            messages.add_message(request, messages.SUCCESS, 'Account Successfully Created you may login!')
+            messages.add_message(request, messages.SUCCESS, 'You are welcome!')
             return redirect('dashboard')
         else:
-            return render(request, 'main/login.html', {
+            return render(request, 'authentications/login-page.html', {
                 'message': "You don't have an account, Please register yourself"
             })
-    return render(request, 'authentications/login.html' )
+    return render(request, 'authentications/login-page.html' )
 
+#Update the profile
 @login_required
 def update_profile(request):
     if request.method == 'POST':
@@ -83,6 +91,18 @@ def update_profile(request):
 
     return render(request, 'authentications/update_profile.html')
 
+# logout def
+@login_required
 def logout_User(request):
   logout(request)
   return redirect(reverse('login'))
+
+# Chart view 
+@login_required
+def chart_view(request):
+    return render(request, 'partials/charts.html')
+
+# table view 
+@login_required
+def table_view(request):
+    return render(request, 'partials/tables.html')

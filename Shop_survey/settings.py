@@ -131,3 +131,7 @@ STATICFILES_DIRS = [
 ]
 
 AUTH_USER_MODEL = 'authentications.AdminUser'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'Shop_survey/static'),  # For js to be readable
+]
