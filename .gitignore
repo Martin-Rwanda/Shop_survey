@@ -1,0 +1,18 @@
+#Python bytecode
+  *.pyc
+  *.pyo
+  __pycashe__/
+
+#virtual environment
+  venv/
+  .env/
+
+#IDE|editor-specific
+  .Vscode/
+  .idea/
+
+#macOs system files
+  .DS_Store
+
+#windows system files
+  Thums.db
