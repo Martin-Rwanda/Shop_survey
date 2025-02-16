@@ -124,3 +124,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#added settings
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'templates'),  # This tells Django where to look for static files, now it because static is located in projecct not app
+]
+
+AUTH_USER_MODEL = 'authentications.AdminUser'
